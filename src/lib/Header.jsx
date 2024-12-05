@@ -1,4 +1,4 @@
-import { Link, navigate } from 'react-router';
+import { Link } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import reactLogo from '../assets/react.svg';

@@ -6,13 +6,17 @@ import SignIn from './lib/SignIn.jsx';
 import SignUp from './lib/SignUp.jsx';
 import Header from './lib/Header.jsx';
 
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
+
 const root = document.getElementById('root');
 ReactDOM.createRoot(root).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-    </Routes>
-  </BrowserRouter>
+  <AuthProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthProvider>
 );
 
 function App() {

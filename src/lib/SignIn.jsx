@@ -3,13 +3,14 @@ import reactLogo from '../assets/react.svg';
 import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
 
+import { useContext } from 'react';
+import { AuthContext } from '../services/AuthContext';
+
 const SignIn = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  const [errorMessage, setErrorMessage] = useState('');
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,26 +19,17 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Here we assume "savedEmail" and "savedPassword" are stored in localStorage during user registration
     const savedEmail = localStorage.getItem('userEmail');
     const savedPassword = localStorage.getItem('userPassword');
 
-    if (!formData.email || !formData.password) {
-      setErrorMessage('Veuillez remplir tous les champs.');
-      return;
-    }
-
     if (formData.email === savedEmail && formData.password === savedPassword) {
-      // On successful login, store isConnected in localStorage
-      localStorage.setItem('isConnected', 'true');
+      login(); // Appelle la fonction `login` du contexte
       setErrorMessage('');
       navigate('/home');
     } else {
       setErrorMessage('Identifiant ou mot de passe incorrect.');
     }
   };
-
   return (
     <section className="h-screen flex items-center justify-center bg-neutral-100 dark:bg-neutral-200">
       <div className="container p-10">
