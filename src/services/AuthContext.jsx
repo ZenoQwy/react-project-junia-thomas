@@ -8,18 +8,14 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Vérifiez si l'utilisateur est connecté (par exemple, via localStorage)
-    const isConnected = localStorage.getItem('isConnected') === 'true';
-    setIsAuthenticated(isConnected);
+    setIsAuthenticated(isAuthenticated);
   }, []);
 
   const login = () => {
-    localStorage.setItem('isConnected', 'true');
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    localStorage.removeItem('isConnected');
     setIsAuthenticated(false);
   };
 

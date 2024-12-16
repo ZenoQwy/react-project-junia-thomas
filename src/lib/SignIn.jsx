@@ -7,7 +7,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../services/AuthContext';
 
 const SignIn = () => {
-  const { login } = useContext(AuthContext);
+  const {login} = useContext(AuthContext) || {};
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');

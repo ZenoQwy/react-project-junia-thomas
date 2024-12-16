@@ -1,34 +1,25 @@
-import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 
 import Home from './lib/Home.jsx';
 import SignIn from './lib/SignIn.jsx';
 import SignUp from './lib/SignUp.jsx';
-import Header from './lib/Header.jsx';
-
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './AuthContext';
-
-const root = document.getElementById('root');
-ReactDOM.createRoot(root).render(
-  <AuthProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </AuthProvider>
-);
+import Layout from './lib/Layout.jsx';
+import {AuthProvider} from './services/AuthContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <AuthProvider>
+      <BrowserRouter>
       <Routes>
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Layout />}>
+          <Route path="home" index={true} element={<Home />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="sign-in" element={<SignIn />} />
+        </Route>
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
+    
   );
 }
 
