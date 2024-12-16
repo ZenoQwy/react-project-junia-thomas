@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setIsAuthenticated(isAuthenticated);
-  }, []);
+  }, []);  
 
   const login = () => {
     setIsAuthenticated(true);

@@ -2,11 +2,13 @@ import { Link } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import reactLogo from '../assets/react.svg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../services/AuthContext';
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext); 
 
   useEffect(() => {
     // On page load, check localStorage for the isConnected status
@@ -38,12 +40,12 @@ const Header = () => {
           <div
             className={`flex-col md:flex md:flex-row ${navOpen ? 'flex' : 'hidden'} md:flex`}
           >
-            {isConnected ? (
+            {isAuthenticated ? (
               <div>
-                <Link to="/settings" className="p-2 px-4">
+                <Link to="/home" className="p-2 px-4">
                   Settings
                 </Link>
-                <button className="p-2 px-4" onClick={handleLogout}>
+                <button className="p-2 px-4">
                   Disconnect
                 </button>
               </div>

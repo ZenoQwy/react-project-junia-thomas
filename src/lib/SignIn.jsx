@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../services/AuthContext';
 
 const SignIn = () => {
-  const {login} = useContext(AuthContext) || {};
+  const {login} = useContext(AuthContext);
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -24,7 +24,7 @@ const SignIn = () => {
     const savedPassword = localStorage.getItem('userPassword');
 
     if (formData.email === savedEmail && formData.password === savedPassword) {
-      login(); // Appelle la fonction `login` du contexte
+      login(); 
       setErrorMessage('');
       navigate('/home');
     } else {
