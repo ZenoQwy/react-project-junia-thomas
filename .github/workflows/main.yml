@@ -17,11 +17,11 @@ jobs:
         uses: docker/login-action@v3.3.0
         with:
           registry: ghcr.io
-          username: ${{ 'zenoqwy' }}
+          username: ${{ github.actor }}
           password: ${{ secrets.PAT_GITHUB_PACKAGE_PUBLICATION }}
       - name: Build and push Docker image
         run: |
-          docker build -t ghcr.io/$GITHUB_REPOSITORY:latest .
-          docker tag ghcr.io/$GITHUB_REPOSITORY:latest ghcr.io/$GITHUB_REPOSITORY:$GITHUB_SHA  
-          docker push ghcr.io/$GITHUB_REPOSITORY:latest
-          docker push ghcr.io/$GITHUB_REPOSITORY:$GITHUB_SHA
+          docker build -t ghcr.io/zenoqwy/react-project-junia-thomas:latest .
+          docker tag ghcr.io/zenoqwy/react-project-junia-thomas:latest ghcr.io/zenoqwy/react-project-junia-thomas:$GITHUB_SHA  
+          docker push ghcr.io/zenoqwy/react-project-junia-thomas:latest
+          docker push ghcr.io/zenoqwy/react-project-junia-thomas:$GITHUB_SHA
